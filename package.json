@@ -1,0 +1,39 @@
+{
+  "name": "venice-swap-periphery",
+  "version": "1.0.0",
+  "description": "",
+  "license": "GPL-3.0-or-later",
+  "scripts": {
+    "lint": "yarn prettier ./test/*.ts --check",
+    "lint:fix": "yarn prettier ./test/*.ts --write",
+    "clean": "rimraf ./build/",
+    "precompile": "yarn clean",
+    "compile": "waffle .waffle.json",
+    "pretest": "yarn compile",
+    "test": "mocha",
+    "prepublishOnly": "yarn test"
+  },
+  "dependencies": {
+    "ethers": "^5.0.19",
+    "truffle": "^5.1.62",
+    "@truffle/hdwallet-provider": "^1.2.2",
+    "@uniswap/lib": "1.1.1",
+    "@uniswap/v2-core": "^1.0.1",
+    "@openzeppelin/contracts": "3.2.0"
+  },
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.2",
+    "hardhat": "^2.0.3",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.3",
+    "ethereum-waffle": "^2.4.1",
+    "ethereumjs-util": "^6.2.0",
+    "@types/chai": "^4.2.6",
+    "@types/mocha": "^5.2.7",
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2",
+    "solc": "0.5.16",
+    "prettier": "^1.19.1",
+    "rimraf": "^3.0.0"
+  }
+}
