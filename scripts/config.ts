@@ -34,6 +34,9 @@ const TOKENS = {
     },
     'DOGE': {
         'test': '0xa46125DC6238CAF1b4A0737204FFb25eD0aDB104'
+    },
+    'VCE': {
+        'test': '0xAE61762acb0d292fd044C142AEaF8AA084eE64a9'
     }
 }
 const PAIRS = {
@@ -57,6 +60,9 @@ const PAIRS = {
     },
     'DOGE-WFRA': {
         'test': '0x923dD0a6b8002C25fb1441bdc3C3f369735d47FF'
+    },
+    'VCE-WFRA': {
+        'test': '0x8088Da1D83f59f09c6b996CcDC6eA0503e1986F4'
     }
 }
 
