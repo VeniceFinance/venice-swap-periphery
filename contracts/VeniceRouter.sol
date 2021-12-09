@@ -160,7 +160,6 @@ contract VeniceRouter is IVeniceRouter {
             { // scope to avoid stack too deep errors
             (uint reserve0, uint reserve1,) = pair.getReserves();
             (uint reserveInput, uint reserveOutput) = input == token0 ? (reserve0, reserve1) : (reserve1, reserve0);
-            // amountInput = IERC20(input).balanceOf(address(pair)).sub(reserveInput);
             BalanceHelper.safeBalanceOf(input, address(pair));
             amountOutput = VeniceLibrary.getAmountOut(amountInput, reserveInput, reserveOutput);
             }
@@ -180,11 +179,9 @@ contract VeniceRouter is IVeniceRouter {
         TransferHelper.safeTransferFrom(
             path[0], msg.sender, VeniceLibrary.pairFor(factory, path[0], path[1]), amountIn
         );
-        // uint balanceBefore = IERC20(path[path.length - 1]).balanceOf(to);
         uint balanceBefore = BalanceHelper.safeBalanceOf(path[path.length - 1], to);
         _swapSupportingFeeOnTransferTokens(path, to);
         require(
-            // IERC20(path[path.length - 1]).balanceOf(to).sub(balanceBefore) >= amountOutMin,
             BalanceHelper.safeBalanceOf(path[path.length - 1], to).sub(balanceBefore) >= amountOutMin,
             'VeniceRouter: INSUFFICIENT_OUTPUT_AMOUNT'
         );
