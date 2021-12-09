@@ -14,16 +14,16 @@ async function main() {
 
     console.log(`====================Do your bussiness =======================`)
     // approve usdt token to router
-    let usdtToken = await ethers.getContractAt('MockToken', TOKENS['USDT'][network.name]);
+    let usdtToken = await ethers.getContractAt('MockToken', TOKENS['FRA'][network.name]);
     let usdtDecimals = await usdtToken.decimals();
     console.log('usdt decimals is: ', usdtDecimals);
-    let pair_usdt_balance = await usdtToken.balanceOf(PAIRS['USDT-BUSD'][network.name]);
+    let pair_usdt_balance = await usdtToken.balanceOf(PAIRS['FRA-USDT'][network.name]);
     console.log('usdt-busd pair usdt balance is:', pair_usdt_balance.toString());
-    // console.log('usdt-busd pair busd reserves is:', reserves[1]);
-    let busdToken = await ethers.getContractAt('MockToken', TOKENS['BUSD'][network.name]);
+    //
+    let busdToken = await ethers.getContractAt('MockToken', TOKENS['USDT'][network.name]);
     let busdDecimals = await busdToken.decimals();
     console.log('busd decimals is: ', busdDecimals);
-    let pair_busd_balance = await busdToken.balanceOf(PAIRS['USDT-BUSD'][network.name]);
+    let pair_busd_balance = await busdToken.balanceOf(PAIRS['FRA-USDT'][network.name]);
     console.log('usdt-busd pair busd balance is:', pair_busd_balance.toString());
 }
 

@@ -16,7 +16,7 @@ async function deploy(deployer, network, accounts) {
   let deployer_account = accounts[0];
 
   console.log("[Periphery] Begin to deploy VeniceRouter")
-  await deployer.deploy(veniceRouter, '0x5E50395cD465Eb04f8ef780258d233A75Ce239dB', '0x27f9AcDBf683903646e1Ea36187f845493278Ab3');
+  await deployer.deploy(veniceRouter, '0x4409DbE5E00725EF302C9cD1bC5C5B16596aA90A');
 
   console.log("[Periphery] End");
 }

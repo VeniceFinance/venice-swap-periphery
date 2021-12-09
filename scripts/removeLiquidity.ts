@@ -14,14 +14,14 @@ async function main() {
 
     console.log(`====================Do your bussiness =======================`)
     // approve usdt token to router
-    let pairToken = await ethers.getContractAt('ERC20', PAIRS['USDT-BUSD'][network.name]);
+    let pairToken = await ethers.getContractAt('ERC20', PAIRS['FRA-USDT'][network.name]);
     let pair_balance = await pairToken.balanceOf(operator.address);
     const tx1 = await pairToken.approve(ROUTER_ADDRESS, pair_balance);
     await wait(ethers, tx1.hash, '1# approve pair token to router');
     // removeLiquidity
     let veniceRouter = await ethers.getContractAt('VeniceRouter', ROUTER_ADDRESS);
-    let tokenA = TOKENS['USDT'].findora;
-    let tokenB = TOKENS['BUSD'].findora;
+    let tokenA = TOKENS['FRA'].findora;
+    let tokenB = TOKENS['USDT'].findora;
     let liquidity = pair_balance;
     let to = operator.address;
     let deadline = Math.floor(new Date().getTime() / 1000) + 1800; // 30 minutes
