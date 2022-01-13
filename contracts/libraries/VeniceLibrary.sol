@@ -21,7 +21,7 @@ library VeniceLibrary {
                 hex'ff',
                 factory,
                 keccak256(abi.encodePacked(token0, token1)),
-                hex'e7646a518329caec2d9403ceae395516ad8d71ba0aa449b4fb0e67b404a1e626' // init code hash
+                hex'c3e61491b39deb8bd938517db55ff614e0b51dbec0173d1688a69f857d8b6fad' // init code hash
             ))));
     }
 

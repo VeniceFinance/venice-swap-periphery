@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.6.12;
 
+import './interfaces/IERC20.sol';
 import './interfaces/IVeniceFactory.sol';
 import './interfaces/IVeniceRouter.sol';
 import './libraries/VeniceLibrary.sol';
 import './libraries/SafeMath.sol';
 import './libraries/TransferHelper.sol';
-import './libraries/BalanceHelper.sol';
 
 contract VeniceRouter is IVeniceRouter {
     using SafeMath for uint;
@@ -118,6 +118,7 @@ contract VeniceRouter is IVeniceRouter {
             );
         }
     }
+
     function swapExactTokensForTokens(
         uint amountIn,
         uint amountOutMin,
@@ -160,7 +161,7 @@ contract VeniceRouter is IVeniceRouter {
             { // scope to avoid stack too deep errors
             (uint reserve0, uint reserve1,) = pair.getReserves();
             (uint reserveInput, uint reserveOutput) = input == token0 ? (reserve0, reserve1) : (reserve1, reserve0);
-            BalanceHelper.safeBalanceOf(input, address(pair));
+            amountInput = IERC20(input).balanceOf(address(pair)).sub(reserveInput);
             amountOutput = VeniceLibrary.getAmountOut(amountInput, reserveInput, reserveOutput);
             }
             (uint amount0Out, uint amount1Out) = input == token0 ? (uint(0), amountOutput) : (amountOutput, uint(0));
@@ -179,10 +180,10 @@ contract VeniceRouter is IVeniceRouter {
         TransferHelper.safeTransferFrom(
             path[0], msg.sender, VeniceLibrary.pairFor(factory, path[0], path[1]), amountIn
         );
-        uint balanceBefore = BalanceHelper.safeBalanceOf(path[path.length - 1], to);
+        uint balanceBefore = IERC20(path[path.length - 1]).balanceOf(to);
         _swapSupportingFeeOnTransferTokens(path, to);
         require(
-            BalanceHelper.safeBalanceOf(path[path.length - 1], to).sub(balanceBefore) >= amountOutMin,
+            IERC20(path[path.length - 1]).balanceOf(to).sub(balanceBefore) >= amountOutMin,
             'VeniceRouter: INSUFFICIENT_OUTPUT_AMOUNT'
         );
     }
