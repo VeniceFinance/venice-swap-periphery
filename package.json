@@ -1,0 +1,18 @@
+{
+  "name": "venice-swap-periphery",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "license": "MIT",
+  "scripts": {},
+  "dependencies": {
+    "ethers": "^5.0.19",
+    "hardhat": "^2.0.3",
+    "@nomiclabs/hardhat-ethers": "^2.0.2",
+    "@truffle/hdwallet-provider": "^1.2.2"
+  },
+  "devDependencies": {
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.5"
+  }
+}
